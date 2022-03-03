@@ -1,0 +1,30 @@
+{
+  "name": "jwt",
+  "version": "1.0.0",
+  "description": "Basic JWT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Heartless-Caesar/JWT.git"
+  },
+  "keywords": [
+    "jwt",
+    "auth"
+  ],
+  "author": "caesar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Heartless-Caesar/JWT/issues"
+  },
+  "homepage": "https://github.com/Heartless-Caesar/JWT#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.4"
+  }
+}
