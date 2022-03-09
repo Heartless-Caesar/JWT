@@ -16,7 +16,8 @@ const login = async (req, res) => {
     const token = jwt.sign({ usernameDB }, secret, {
         expiresIn: "30d",
     });
-
+    
+    //TEST
     res.status(200).json({
         message: `Inputs :${username}, ${password} logged and signed`,
         token: `${token} `,
