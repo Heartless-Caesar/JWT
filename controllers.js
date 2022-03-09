@@ -10,7 +10,6 @@ const login = async (req, res) => {
 
     if (!username || !password) {
         res.status(201).send("Please provide the missing element");
-        console.log("Provide missing input");
     }
 
     //PARAMS, JWT SECRET STRING AND EXPIRATION DATE FOR THE TOKEN
