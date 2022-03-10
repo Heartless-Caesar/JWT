@@ -1,12 +1,12 @@
 class CustomError extends Error {
-  constructor(message, statusCode) {
-    super(message);
-    this.statusCode = statusCode;
-  }
+    constructor(message, statusCode) {
+        super(message);
+        this.statusCode = statusCode;
+    }
 }
 
 const ErrorInstance = (message, statusCode) => {
-  return new CustomError(message, statusCode);
+    return new CustomError(message, statusCode);
 };
 
 module.exports = { CustomError, ErrorInstance };
