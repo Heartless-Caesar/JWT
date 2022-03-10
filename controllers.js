@@ -2,10 +2,7 @@ require("dotenv").config();
 const userSchema = require("./auxiliary_files/userSchema");
 const secret = process.env.JWT_SECRET;
 const jwt = require("jsonwebtoken");
-const {
-    CustomError,
-    ErrorInstance,
-} = require("./auxiliary_files/customErrorClass");
+const { CustomError } = require("./auxiliary_files/customErrorClass");
 
 const login = async (req, res) => {
     const { username, password } = req.body;
@@ -29,11 +26,12 @@ const login = async (req, res) => {
 };
 
 const dashboard = async (req, res) => {
-    const authHeader = req.headers.Authorization;
+    const authHeader = req.headers.authorization;
 
     console.log(req.headers);
-    if (!authHeader || authHeader.startsWith("Bearer ")) {
-        throw new CustomError("No token provided", 401);
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        return res.status(401).json({ msg: "No token provided" });
     }
     res.status(200).json({ msg: req.headers });
 };
