@@ -2,14 +2,13 @@ require("dotenv").config();
 const userSchema = require("./auxiliary_files/userSchema");
 const secret = process.env.JWT_SECRET;
 const jwt = require("jsonwebtoken");
-const { CustomError } = require("./auxiliary_files/customErrorClass");
 
 const login = async (req, res) => {
-    const { username, password } = req.body;
+    const { userName, password } = req.body;
 
-    const usernameDB = await userSchema.find({ username: username });
+    const usernameDB = await userSchema.findOne({ username: userName });
 
-    if (!username || !password) {
+    if (!userName || !password) {
         res.status(201).send("Please provide the missing element");
     }
 
@@ -20,19 +19,26 @@ const login = async (req, res) => {
     console.log(req.headers);
     //TEST
     res.status(200).json({
-        message: `Inputs :${username}, ${password} logged and signed`,
+        message: `Inputs :${userName}, ${password} logged and signed`,
         token: `${token} `,
     });
 };
 
 const dashboard = async (req, res) => {
     const authHeader = req.headers.authorization;
+    const token = authHeader.split(" ")[1];
 
-    console.log(req.headers);
-
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    try {
+        const decoded = jwt.verify(token, secret);
+        console.log(decoded);
+        res.status(201).json({
+            message: `Token verified. Hello ${decoded.usernameDB.username}`,
+        });
+    } catch (error) {
+        console.log(req.headers);
         return res.status(401).json({ msg: "No token provided" });
     }
+
     res.status(200).json({ msg: req.headers });
 };
 
