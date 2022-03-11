@@ -5,8 +5,6 @@ const port = 5000;
 const router = require("./routes");
 const connect = require("./connect");
 
-app.use(errorHandler);
-
 app.use(express.json());
 
 app.use("/app", router);
