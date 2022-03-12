@@ -16,7 +16,10 @@ const login = async (req, res) => {
     const token = jwt.sign({ usernameDB }, secret, {
         expiresIn: "30d",
     });
+
+    //TEST LOG
     console.log(req.headers);
+
     //TEST
     res.status(200).json({
         message: `Inputs :${userName}, ${password} logged and signed`,
