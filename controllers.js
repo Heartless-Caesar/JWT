@@ -4,10 +4,13 @@ const secret = process.env.JWT_SECRET;
 const jwt = require("jsonwebtoken");
 
 const login = async (req, res) => {
+    //LOGIN DATA
     const { userName, password } = req.body;
 
+    //FETCHES USER IN DB
     const usernameDB = await userSchema.findOne({ username: userName });
 
+    //MISSING BODY ERROR
     if (!userName || !password) {
         return res.status(201).send("Please provide the missing element");
     }
@@ -17,10 +20,7 @@ const login = async (req, res) => {
         expiresIn: "30d",
     });
 
-    //TEST LOG
-    //console.log(req.headers);
-
-    //TEST
+    //SUCCESS RESPONSE
     res.status(200).json({
         message: `Inputs :${userName}, ${password} logged and signed`,
         token: `${token} `,
@@ -28,8 +28,10 @@ const login = async (req, res) => {
 };
 
 const dashboard = async (req, res) => {
-    console.log(req.user);
+    //DESTRUCTURING FROM REQ.USER HEADER CREATED IN AUTH MIDDLEWARE
     const { username } = req.user;
+
+    //SUCCESSFUL LOGIN FETCHED TOKEN RESPONSE
     return res
         .status(200)
         .json({ message: `Successful response. Hello ${username}` });
