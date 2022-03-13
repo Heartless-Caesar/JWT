@@ -36,15 +36,13 @@ const dashboard = async (req, res) => {
         const decoded = jwt.verify(token, secret);
         //LOG OF THE OUTPUT OF THE USER
         console.log(decoded);
-        res.status(201).json({
+        return res.status(201).json({
             message: `Token verified. Hello ${decoded.usernameDB.username}`,
         });
     } catch (error) {
         console.log(req.headers);
         return res.status(401).json({ msg: "No token provided" });
     }
-
-    res.status(200).json({ msg: req.headers });
 };
 
 module.exports = { login, dashboard };
