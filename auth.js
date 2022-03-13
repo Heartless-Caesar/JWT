@@ -1,6 +1,7 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const secret = process.env.JWT_SECRET;
+const userSchema = require("./auxiliary_files/userSchema");
 const { CustomError } = require("./auxiliary_files/customErrorClass");
 
 const authMiddleware = async (req, res, next) => {
@@ -18,12 +19,16 @@ const authMiddleware = async (req, res, next) => {
 
         console.log(decoded);
 
-        //const { id, username } = decoded;
+        const { _id, username } = decoded.usernameDB;
 
-        //req.user = { id, username };
+        req.user = { _id, username };
+
+        next();
     } catch (error) {
         console.log(req.headers);
-        throw new CustomError("Error");
+        throw new CustomError(
+            "Something went wrong in the token verification..."
+        );
     }
     next();
 };
