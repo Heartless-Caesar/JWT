@@ -1,4 +1,5 @@
 const { CustomError } = require("./auxiliary_files/customErrorClass");
+const { UnauthorizedError } = require("./auxiliary_files/unauthenticated");
 const secret = process.env.JWT_SECRET;
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
@@ -9,7 +10,7 @@ const authMiddleware = async (req, res, next) => {
 
     //MISSING AUTH HEADER HANDLER
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
-        throw new CustomError("No auth header");
+        throw new UnauthorizedError("No auth header");
     }
 
     //GETS THE VALUE BETWEEN SPACES(THE TOKEN ITSELF)
@@ -30,7 +31,7 @@ const authMiddleware = async (req, res, next) => {
         next();
     } catch (error) {
         console.log(req.headers);
-        throw new CustomError(
+        throw new UnauthorizedError(
             "Something went wrong in the token verification..."
         );
     }

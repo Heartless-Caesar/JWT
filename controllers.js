@@ -1,4 +1,5 @@
 require("dotenv").config();
+const { BadRequest } = require("./auxiliary_files/badRequest");
 const userSchema = require("./auxiliary_files/userSchema");
 const secret = process.env.JWT_SECRET;
 const jwt = require("jsonwebtoken");
@@ -12,7 +13,7 @@ const login = async (req, res) => {
 
     //MISSING BODY ERROR
     if (!userName || !password) {
-        return res.status(201).send("Please provide the missing element");
+        throw new BadRequest("Please provide a username and a password");
     }
 
     //PARAMS, JWT SECRET STRING AND EXPIRATION DATE FOR THE TOKEN
