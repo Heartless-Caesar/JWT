@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.post("/login", login);
 
-router.get("/dashboard", authMiddleware, dashboard);
+router.get("/dashboard").use(dashboard, authMiddleware);
 
 module.exports = router;

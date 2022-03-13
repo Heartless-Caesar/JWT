@@ -18,7 +18,7 @@ const login = async (req, res) => {
     });
 
     //TEST LOG
-    console.log(req.headers);
+    //console.log(req.headers);
 
     //TEST
     res.status(200).json({
@@ -28,21 +28,9 @@ const login = async (req, res) => {
 };
 
 const dashboard = async (req, res) => {
-    const authHeader = req.headers.authorization;
-    const token = authHeader.split(" ")[1];
-
-    try {
-        //VERIFICATION OF USER'S TOKEN
-        const decoded = jwt.verify(token, secret);
-        //LOG OF THE OUTPUT OF THE USER
-        console.log(decoded);
-        return res.status(201).json({
-            message: `Token verified. Hello ${decoded.usernameDB.username}`,
-        });
-    } catch (error) {
-        console.log(req.headers);
-        return res.status(401).json({ msg: "No token provided" });
-    }
+    //const { id, username } = req.user;
+    //console.log("This is " + req.user);
+    return res.status(200).json({ message: `Hello` });
 };
 
 module.exports = { login, dashboard };
