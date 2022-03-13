@@ -3,8 +3,8 @@ const express = require("express");
 const authMiddleware = require("./auth");
 const router = express.Router();
 
-router.post("/login", login);
+router.route("/login").post(login);
 
-router.get("/dashboard").use(dashboard, authMiddleware);
+router.route("/dashboard").get(authMiddleware, dashboard);
 
 module.exports = router;

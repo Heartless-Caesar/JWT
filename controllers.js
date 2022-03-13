@@ -28,9 +28,7 @@ const login = async (req, res) => {
 };
 
 const dashboard = async (req, res) => {
-    //const { id, username } = req.user;
-    //console.log("This is " + req.user);
-    return res.status(200).json({ message: `Hello` });
+    return res.status(200).json({ message: `Successful response` });
 };
 
 module.exports = { login, dashboard };
