@@ -9,7 +9,7 @@ const login = async (req, res) => {
     const usernameDB = await userSchema.findOne({ username: userName });
 
     if (!userName || !password) {
-        res.status(201).send("Please provide the missing element");
+        return res.status(201).send("Please provide the missing element");
     }
 
     //PARAMS, JWT SECRET STRING AND EXPIRATION DATE FOR THE TOKEN
