@@ -32,7 +32,9 @@ const dashboard = async (req, res) => {
     const token = authHeader.split(" ")[1];
 
     try {
+        //VERIFICATION OF USER'S TOKEN
         const decoded = jwt.verify(token, secret);
+        //LOG OF THE OUTPUT OF THE USER
         console.log(decoded);
         res.status(201).json({
             message: `Token verified. Hello ${decoded.usernameDB.username}`,

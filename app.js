@@ -4,6 +4,7 @@ const app = express();
 const port = 5000;
 const router = require("./routes");
 const connect = require("./connect");
+const authMiddleware = require("./auth");
 
 app.use(express.json());
 
