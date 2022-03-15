@@ -1,4 +1,3 @@
-const { CustomError } = require("./auxiliary_files/customErrorClass");
 const { UnauthorizedError } = require("./auxiliary_files/unauthenticated");
 const secret = process.env.JWT_SECRET;
 const jwt = require("jsonwebtoken");
