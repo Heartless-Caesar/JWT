@@ -23,7 +23,7 @@ const login = async (req, res) => {
 
     //SUCCESS RESPONSE
     res.status(200).json({
-        message: `Inputs :${userName}, ${password} logged and signed`,
+        message: `Inputs :${userName} logged and signed`,
         token: `${token} `,
     });
 };
